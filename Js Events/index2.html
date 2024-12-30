@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling, set interval & set timeout</title>
+    <style>
+        .child{
+            background-color: aliceblue;
+            border: 2px solid black;
+            padding: 14px;
+            margin: 14px;
+            cursor: pointer;
+        }
+        .child_container{
+            background-color: blue;
+            padding: 14px;
+            margin: 14px;
+            cursor: pointer;
+        }
+        .container{
+            background-color: rgb(13, 115, 204);
+            padding: 14px;
+            margin: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child_container">
+            <div class="child">i am a child</div>
+        </div>
+    </div>
+    <script>
+        document.querySelector(".child").addEventListener("click", (a) => {
+            a.stopPropagation()
+            alert("child was clicked")
+        })
+
+        document.querySelector(".child_container").addEventListener("click", () => {
+            alert("child container was clicked")
+        })
+
+        document.querySelector(".container").addEventListener("click", () => {
+            alert("container was clicked")
+        })
+        function getRandomColor() {
+    let val1 = Math.ceil(0+Math.random()*255);
+    let val2 = Math.ceil(0+Math.random()*255);
+    let val3 = Math.ceil(0+Math.random()*255);
+    return `rgb(${val1}, ${val2}, ${val3})`
+}
+    /*   setInterval(() => {
+     document.querySelector(".child_container").style.background=getRandomColor()
+       }, 1000);
+    */
+//    this will change color every 1s/1000ms
+    setTimeout(() => {
+     document.querySelector(".child_container").style.background=getRandomColor()
+       }, 4000)
+    //    this color will change after 4s/4000ms
+    </script>
+</body>
+
+</html>
